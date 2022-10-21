@@ -1,14 +1,11 @@
 package hello.jdbc.repository;
 
 import com.zaxxer.hikari.HikariDataSource;
-import hello.jdbc.connection.ConnectionConst;
 import hello.jdbc.domain.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.NoSuchElementException;
 
@@ -20,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @Slf4j
 class MemberRepositoryV2Test {
 
-	MemberRepositoryV2 repository;
+	MemberRepositoryV1 repository;
 
 	//각 테스트가 실행 되기 직전에 한번 실행 되는 것.
 	@BeforeEach
@@ -34,7 +31,7 @@ class MemberRepositoryV2Test {
 		dataSource.setUsername(USERNAME);
 		dataSource.setPassword(PASSWORD);
 
-		repository = new MemberRepositoryV2(dataSource);
+		repository = new MemberRepositoryV1(dataSource);
 	}
 
 	@Test
